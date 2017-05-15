@@ -1,0 +1,41 @@
+{
+  "name": "readme-todo-cli",
+  "version": "1.0.0",
+  "description": "A node.js CLI for viewing todos in my README.md",
+  "main": "lib/index",
+  "types": "lib/index",
+  "scripts": {
+    "test": "mocha -r ts-node/register src/**/**.spec.ts",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rynobax/readme-todo.git"
+  },
+  "keywords": [
+    "Todo",
+    "Readme",
+    "CLI"
+  ],
+  "author": "Ryan Baxley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rynobax/readme-todo/issues"
+  },
+  "homepage": "https://github.com/rynobax/readme-todo#readme",
+  "devDependencies": {
+    "@types/chai": "^3.5.2",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^7.0.18",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-latest": "^6.24.1",
+    "nodemon": "^1.11.0",
+    "ts-loader": "^2.0.3",
+    "ts-node": "^3.0.4",
+    "typescript": "^2.3.2",
+    "webpack": "^2.5.1"
+  }
+}
