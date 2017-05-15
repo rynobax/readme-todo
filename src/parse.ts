@@ -2,7 +2,6 @@ import {Action} from './action';
 
 const parse = (args: string[]): Action => {
     if(args.length < 1) return Action.CURRENT;
-
     const cmd = args[0];
     switch(cmd){
         case('ls'):
