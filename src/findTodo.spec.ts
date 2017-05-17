@@ -1,16 +1,17 @@
 const expect = require('chai').expect;
 const mock = require('mock-fs');
-import {findTodoList} from './findTodo';
+import {findTodoListLocation} from './findTodo';
 
-describe('todo', () => {
+describe('findTodo', () => {
     afterEach(mock.restore);
+    
     it('should find the todo in the same directory', () => {
         mock({
             '/test': {
                 'readme.md': 'TODO',
             },
         });
-        expect(findTodoList('/test')).to.equal('\\test\\readme.md');
+        expect(findTodoListLocation('/test')).to.equal('\\test\\readme.md');
     });
 
     it('should find the todo in a directory beneath it', () => {
@@ -20,7 +21,7 @@ describe('todo', () => {
                 'another': {}
             },
         });
-        expect(findTodoList('/test/another')).to.equal('\\test\\readme.md');
+        expect(findTodoListLocation('/test/another')).to.equal('\\test\\readme.md');
     });
 
     it('should return null if it sees a file that should be a root dir', () => {
@@ -32,7 +33,7 @@ describe('todo', () => {
                 }
             },
         });
-        expect(findTodoList('/test/another')).to.equal(null);
+        expect(findTodoListLocation('/test/another')).to.equal(null);
 
         mock({
             '/test': {
@@ -42,7 +43,7 @@ describe('todo', () => {
                 }
             },
         });
-        expect(findTodoList('/test/another')).to.equal(null);
+        expect(findTodoListLocation('/test/another')).to.equal(null);
     });
 
     it('should return null if the readme it finds has no todo', () => {
@@ -51,6 +52,6 @@ describe('todo', () => {
                 'readme.md': 'not here'
             },
         });
-        expect(findTodoList('/test')).to.equal(null);
+        expect(findTodoListLocation('/test')).to.equal(null);
     });
 })

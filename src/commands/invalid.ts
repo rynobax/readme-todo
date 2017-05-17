@@ -1,7 +1,7 @@
 // Returns error message
 
-const invalid = () => {
-    return 'Invalid command';
+const invalid = (): Promise<string> => {
+    return Promise.resolve('Invalid command');
 };
 
 export {invalid};

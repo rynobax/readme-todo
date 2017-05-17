@@ -1,25 +1,20 @@
 // Returns all todos
 import fs = require('fs');
+import {TodoReader, Todo} from '../TodoReader';
 
-const list = (filePath: string) => {
-    const lines = fs.readFileSync(filePath).toString().split('\n');
-    let beforeTodo = true;
-    let afterList = false;
-    const todoList = [];
-    for(const line of lines){
-        if(beforeTodo){
-            if(line.toLowerCase().includes('# todo')) beforeTodo = false;
-        } else {
-            if(!afterList){
-                if(line.includes('*')){
-                    todoList.push(line);
-                } else {
-                    break;
-                }
-            }
+function getTreeSize(tree: (string | string[])[]){
+    return tree.reduce((sum, branch) => {
+        if(Array.isArray(branch)){
+            return sum + getTreeSize(branch) - 1;
         }
-    }
-    return todoList.join('\n');
+        return sum + 1;
+    }, 0);
+}
+
+const list = (todoReader: TodoReader, listLen: number, includeCompleted: boolean): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        // Use custom data structure to represent the todo list
+    });
 };
 
 export {list};

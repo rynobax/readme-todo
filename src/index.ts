@@ -1,13 +1,18 @@
 // readme-todo-cli
-import {parse} from './parse';
-import {getMessage} from './message';
-import {findTodoList} from './findTodo';
+import {findTodoListLocation} from './findTodo';
+import {TodoReader} from './TodoReader';
+import {doAction} from './action';
 
 let start = 1;
 if(process.argv[0] == 'node') start++;
 const args = process.argv.slice(start);
 
-const action = parse(args);
-const todoListLocation = findTodoList(__dirname);
-const message = getMessage(action, todoListLocation);
-console.log(message);
+const todoListLocation = findTodoListLocation(__dirname);
+
+let message = '';
+if(todoListLocation == null) {
+    console.log('Could not find a todo list');
+} else {
+    const todoReader = new TodoReader(todoListLocation);
+    doAction(args, todoReader).then(console.log);
+}
