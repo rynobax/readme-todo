@@ -1,7 +1,7 @@
 import {invalid} from './commands/invalid';
 import {list} from './commands/list';
 
-const doAction = (args: string[], todoReader): Promise<string> => {
+export const doAction = (args: string[], todoReader): Promise<string> => {
     if(args.length < 1) return list(todoReader, 1, false);
     const cmd = args[0];
     switch(cmd){
@@ -12,5 +12,3 @@ const doAction = (args: string[], todoReader): Promise<string> => {
             return invalid();
     }
 };
-
-export {doAction};
